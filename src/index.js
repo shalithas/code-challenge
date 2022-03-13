@@ -1,4 +1,4 @@
-import { parse } from './engine.js';
+import { parse, next } from './engine.js';
 
 const scale = 4;
 const worldWidth = 480;
@@ -12,6 +12,7 @@ canvas.height = worldHeight;
 const ctx = canvas.getContext("2d");
 let patterns = [];
 let selectedPattern = 'AK94 gun';
+let world = [];
 
 /**
  * Fetch patterns from external JSON file
@@ -73,5 +74,13 @@ startButton.onclick = () => {
     selectedPattern = patternSelecter.value;
     const selPattern = getSelectedPattern(selectedPattern);
     descriptionElement.textContent = selPattern.description;
-    render(selPattern.pattern);
+    world = selPattern.pattern;
+    
+    requestAnimationFrame(update);
+}
+
+const update = () => {
+    world = next(world);
+    render(world);
+    requestAnimationFrame(update);
 }
