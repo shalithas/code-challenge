@@ -62,6 +62,11 @@ const render = (world) => {
     );
 };
 
+/**
+ * Filter pattern with given name
+ * @param {string} patternName 
+ * @returns Object
+ */
 const getSelectedPattern = (patternName) => patterns.find(item => item.name === patternName);
 
 // Pattern selecter
