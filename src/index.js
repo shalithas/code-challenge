@@ -10,6 +10,8 @@ const canvas = document.querySelector("canvas");
 canvas.width = worldWidth;
 canvas.height = worldHeight;
 const ctx = canvas.getContext("2d");
+let patterns = [];
+let selectedPattern = 'AK94 gun';
 
 /**
  * Fetch patterns from external JSON file
@@ -24,7 +26,7 @@ const getPatterns = async (url) => {
         
         return jsonData;
     } catch (error) {
-        console.log(`Unable to locate patternns. ${error.message}`);
+        console.log(`Unable to locate patterns. ${error.message}`);
         return [];
     }
 };
@@ -33,14 +35,12 @@ const getPatterns = async (url) => {
  * Initialise the app
  */
 const init = async () => {
-    const patterns = await getPatterns(patternUrl);
-    console.dir(patterns);
+    patterns = await getPatterns(patternUrl);
+    patterns = patterns.map(item => {
+        item.pattern = parse(item.pattern);
 
-    const parsedPattern = parse(patterns[2].pattern);
-    console.log(parsedPattern);
-
-
-    render(parsedPattern);
+        return item;
+    });
 }
 
 init();
@@ -61,3 +61,17 @@ const render = (world) => {
         )
     );
 };
+
+const getSelectedPattern = (patternName) => patterns.find(item => item.name === patternName);
+
+// Pattern selecter
+const patternSelecter = document.querySelector('#patter-control');
+const descriptionElement = document.querySelector('#description');
+const startButton = document.querySelector('#start');
+
+startButton.onclick = () => {
+    selectedPattern = patternSelecter.value;
+    const selPattern = getSelectedPattern(selectedPattern);
+    descriptionElement.textContent = selPattern.description;
+    render(selPattern.pattern);
+}
