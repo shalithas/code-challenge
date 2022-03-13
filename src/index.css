@@ -12,11 +12,35 @@ body {
   height: 100%;
 }
 
+.container {
+  width: 100%;
+  text-align: center;
+}
+
 canvas {
-  max-height: 960px;
-  max-width: 1920px;
+  display: inline;
+}
+
+.form-control {
+  padding: 50px;;
 }
 
 .controls .form-control label, .controls .form-control #description {
   color: white;
+  font-size: 1.2em;
+}
+
+.controls .form-control select {
+  margin-left: 30px;
+  width: 150px;
+  padding: 10px 5px;
+  border-radius: 2px;
+}
+
+.controls button {
+  height: 35px;
+  width: 100px;
+  background-color: #0dcaf0;
+  border: 1px solid #0dcaf0;
+  border-radius: 2px;;
 }
