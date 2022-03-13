@@ -51,7 +51,6 @@ init();
  * @param {Array[]} world 
  */
 const render = (world) => {
-    console.dir(world);
     ctx.fillStyle = "#202020";
     ctx.fillRect(0, 0, worldWidth * scale, worldHeight * scale);
     ctx.fillStyle = "green";
