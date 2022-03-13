@@ -7,8 +7,8 @@ const patternUrl = '/src/lexicon.json';
 
 
 const canvas = document.querySelector("canvas");
-canvas.width = worldWidth;
-canvas.height = worldHeight;
+canvas.width = worldWidth * scale;
+canvas.height = worldHeight * scale;
 const ctx = canvas.getContext("2d");
 let patterns = [];
 let selectedPattern = 'AK94 gun';
