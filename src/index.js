@@ -47,15 +47,18 @@ init();
  * @param {Array[]} world 
  */
 const render = (world) => {
-    ctx.fillStyle = "#202020";
-    ctx.fillRect(0, 0, worldWidth * scale, worldHeight * scale);
-    ctx.fillStyle = "green";
     canvas.height = world.length * scale;
     canvas.width = world[0].length * scale;
+    
     world.forEach((row, y) =>
         row.forEach(
-            (alive, x) =>
-            alive && ctx.fillRect(x * scale, y * scale, scale - 1, scale - 1)
+            (alive, x) => {
+                ctx.fillStyle = "#202020";
+                ctx.beginPath();
+                ctx.rect(x * scale, y * scale, scale - 1, scale - 1);
+                ctx.fillStyle = alive ? "green" : "black";
+                ctx.fill();
+            }
         )
     );
 };
