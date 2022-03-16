@@ -1,14 +1,10 @@
 import { parse, next } from './engine.js';
 
-const scale = 6;
-const worldWidth = 480;
-const worldHeight = 240;
+const scale = 10;
 const patternUrl = '/src/lexicon.json';
 
 
 const canvas = document.querySelector("canvas");
-canvas.width = worldWidth * 2;
-canvas.height = worldHeight * 2;
 const ctx = canvas.getContext("2d");
 let patterns = [];
 let selectedPattern = 'AK94 gun';
@@ -54,6 +50,8 @@ const render = (world) => {
     ctx.fillStyle = "#202020";
     ctx.fillRect(0, 0, worldWidth * scale, worldHeight * scale);
     ctx.fillStyle = "green";
+    canvas.height = world.length * scale;
+    canvas.width = world[0].length * scale;
     world.forEach((row, y) =>
         row.forEach(
             (alive, x) =>
