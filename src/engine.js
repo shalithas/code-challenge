@@ -19,7 +19,7 @@ export const next = (world) => {
 
           let neighbourX = y + j;
           let neighbourY = x + i;
-          if(neighbourX > -1 && neighbourY > -1 && neighbourY < world.length && neighbourX < row.length ){
+          if(neighbourX > -1 && neighbourY > -1 && neighbourX < world.length && neighbourY < row.length ){
             const neighbour = world[neighbourX][neighbourY];
             numberOfNeighbours += neighbour;
           }
